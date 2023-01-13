@@ -1,17 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
 const cartsController = require("../controllers/cartsController.js")
 
-/* GET users listing. */
-router.get('/', cartsController.getAll);  
+//Rutas
+router.get('/', cartsController.getAll);
+router.get('/:cid', cartsController.getById);
 
-/* router.post('/', cartsController.create);
-router.post('/empty', cartsController.empty); 
-
-router.put('/edit/:id', cartsController.edit);
-
-router.delete('/:id', cartsController.delete);
- */
-
+router.post('/', cartsController.create);
+router.post('/:cid/product/:pid', cartsController.addProductToCart);
+ 
 module.exports = router;

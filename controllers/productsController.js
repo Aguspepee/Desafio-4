@@ -1,5 +1,5 @@
-const productManager = require('../productManager')
-const products = new productManager('./productos.json')
+const productManager = require('../classes/products/productManager')
+const products = new productManager('./classes/products/productos.json')
 
 module.exports = {
     getAll: async function (req, res, next) {
@@ -19,6 +19,44 @@ module.exports = {
         let pid = req.params.pid
         try {
             let product = products.getProductById(Number(pid))
+            res.json(product)
+        } catch (e) {
+            console.log(e)
+            e.status = 400
+            next(e)
+        }
+    },
+
+    create: async function (req, res, next) {
+        console.log(req.body)
+        try {
+            let product = products.addProduct(req.body[0])
+            res.json(product)
+        } catch (e) {
+            console.log(e)
+            e.status = 400
+            next(e)
+        }
+    },
+
+    edit: async function (req, res, next) {
+        console.log("edit")
+        let pid = req.params.pid
+        try {
+            let product = products.updateProduct({...req.body[0], id: pid})
+            res.json(product)
+        } catch (e) {
+            console.log(e)
+            e.status = 400
+            next(e)
+        }
+    },
+
+    delete: async function (req, res, next) {
+        console.log("edit")
+        let pid = req.params.pid
+        try {
+            let product = products.deleteProduct(pid)
             res.json(product)
         } catch (e) {
             console.log(e)

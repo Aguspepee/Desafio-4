@@ -2,16 +2,14 @@ var express = require('express');
 var router = express.Router();
 const productsController = require("../controllers/productsController.js")
 
-/* GET users listing. */
-router.get('/', productsController.getAll);  
-router.get('/:pid', productsController.getById);  
+//Rutas
+router.get('/', productsController.getAll);
+router.get('/:pid', productsController.getById);
 
-/* router.post('/', productsController.create);
-router.post('/empty', productsController.empty); 
+router.post('/', productsController.create);
 
-router.put('/edit/:id', productsController.edit);
+router.put('/:pid', productsController.edit);
 
-router.delete('/:id', productsController.delete);
- */
-
+router.delete('/:pid', productsController.delete);
+ 
 module.exports = router;
